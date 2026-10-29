@@ -1,14 +1,12 @@
-MY PRACTICALS — CODE LIBRARY
+MY PRACTICALS — MULTI-SUBJECT CODE LIBRARY
 
-Files:
 - index.html: website home page and code viewer
-- code/: your original practical source files, renamed to shorter readable filenames
+- code/: source files for the practicals
 
 How to use:
 1. Extract the ZIP.
-2. Open index.html in Chrome or another browser.
-3. Click any practical to view the full source code.
+2. Open index.html in Chrome.
+3. Search or click a practical to view its source code.
 4. Click Copy Code to copy it.
 
-The code is embedded in index.html as well as saved in the code/ folder, so the viewer works when opened directly from your computer.
-To publish it with GitHub Pages, upload index.html and the code/ folder to your repository.
+The website embeds source code in index.html and also includes separate files in code/. Upload index.html and code/ to your GitHub Pages repository to publish it.

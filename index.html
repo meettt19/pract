@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Practicals | Code Library</title>
+<style>
+:root{color-scheme:dark;--bg:#292929;--panel:#333;--card:#414141;--line:#5a5a5a;--text:#f5f5f5;--muted:#bcbcbc;--accent:#8ab4f8}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Arial,Helvetica,sans-serif}
+.wrap{max-width:1200px;margin:38px auto;padding:0 22px}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:24px;box-shadow:0 4px 14px #0004}
+h1{font-size:28px;margin:0 0 8px}
+.subtitle{color:var(--muted);margin:0 0 22px}
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px}
+input{flex:1;min-width:210px;background:#242424;color:var(--text);border:1px solid var(--line);border-radius:8px;padding:12px;font-size:15px}
+button{cursor:pointer;border:1px solid var(--line);background:#484848;color:white;border-radius:8px;padding:10px 14px;font-size:14px}
+button:hover,.item:hover{background:#555}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.item{text-align:left;min-height:92px;padding:18px;background:var(--card);border:1px solid var(--line);border-radius:11px;box-shadow:0 3px 9px #0003}
+.item strong{display:block;font-size:16px;margin-bottom:8px}
+.item span{font-size:12px;color:var(--muted)}
+.viewer{display:none;margin-top:20px}
+.viewer-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:12px}
+.viewer h2{font-size:20px;margin:0}
+.codebox{border:1px solid var(--line);border-radius:10px;overflow:hidden;background:#171717}
+.code-meta{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:10px 14px;background:#222;color:var(--muted);font-size:12px}
+pre{margin:0;padding:18px;overflow:auto;max-height:65vh;line-height:1.55;font-size:14px;tab-size:4;white-space:pre}
+code{font-family:Consolas,"Courier New",monospace}
+.empty{color:var(--muted);padding:16px 0;display:none}
+.back{background:transparent}
+@media(max-width:600px){.wrap{margin:18px auto;padding:0 12px}.panel{padding:16px}h1{font-size:23px}.item{min-height:75px}}
+</style>
+</head>
+<body>
+<main class="wrap">
+<section class="panel">
+<h1>MY PRACTICALS</h1>
+<p class="subtitle">Choose a practical to view and copy its complete Python source code.</p>
+<div class="toolbar">
+<input id="search" type="search" placeholder="Search practicals..." aria-label="Search practicals">
+</div>
+<div id="list" class="grid"></div>
+<p id="empty" class="empty">No practicals match your search.</p>
+<section id="viewer" class="viewer">
+<div class="viewer-head">
+<h2 id="codeTitle">Source Code</h2>
+<div class="toolbar" style="margin:0">
+<button class="back" id="backBtn">← All practicals</button>
+<button id="copyBtn">Copy Code</button>
+</div>
+</div>
+<div class="codebox">
+<div class="code-meta"><span id="fileName">filename.py</span><span id="lineCount"></span></div>
+<pre><code id="code"></code></pre>
+</div>
+</section>
+</section>
+</main>
+<script>
+const practicals = [{"title": "P1 (A) — Breadth First Search (BFS)", "file": "P1A_BFS.py", "code": "import queue as Q\nfrom RMP import dict_gn\n\nstart = 'Arad'\ngoal = 'Bucharest'\nresult = ''\n\ndef BFS(city, cityq, visitedq):\n    global result\n\n    if city == start:\n        result = result + ' ' + city\n\n    for eachcity in dict_gn[city].keys():\n        if eachcity == goal:\n            result = result + ' ' + eachcity\n            return\n\n        if eachcity not in cityq.queue and eachcity not in visitedq.queue:\n            cityq.put(eachcity)\n            result = result + ' ' + eachcity\n            visitedq.put(city)\n            BFS(cityq.get(), cityq, visitedq)\n\n\ndef main():\n    cityq = Q.Queue()\n    visitedq = Q.Queue()\n\n    BFS(start, cityq, visitedq)\n\n    print(\"BFS Traversal From\", start, \"to\", goal, \"is:\")\n    print(result)\n\n\nmain()\n"}, {"title": "P1 (B) — Iterative Deepening DFS (IDDFS)", "file": "P1B_IDDFS.py", "code": "from RMP import dict_gn\n\nstart = 'Arad'\ngoal = 'Bucharest'\nresult = ''\n\ndef DLS(city, visitedstack, startlimit, endlimit):\n    global result\n    result = result + city + ' '\n\n    visitedstack.append(city)\n\n    if city == goal:\n        return 1\n\n    if startlimit == endlimit:\n        return 0\n\n    for eachcity in dict_gn[city].keys():\n        if eachcity not in visitedstack:\n            found = DLS(\n                eachcity,\n                visitedstack,\n                startlimit + 1,\n                endlimit\n            )\n\n            if found:\n                return found\n\n    return 0\n\n\ndef IDDFS(city, visitedstack, endlimit):\n    global result\n\n    for i in range(0, endlimit):\n        print(\"Searching at limit:\", i)\n\n        result = ''\n        visitedstack.clear()\n\n        found = DLS(city, visitedstack, 0, i)\n\n        if found:\n            print(\"Found!\")\n            print(result)\n            break\n    else:\n        print(\"Not Found!\")\n\n\ndef main():\n    visitedstack = []\n\n    IDDFS(start, visitedstack, 9)\n\n    print(\"IDDFS Traversal from\", start, \"to\", goal, \"is:\")\n    print(result)\n\n\nmain()\n"}, {"title": "P2 (A) — A* Search", "file": "P2A_AStar.py", "code": "import queue as Q\nfrom RMP import dict_gn\nfrom RMP import dict_hn\n\nstart = 'Arad'\ngoal = 'Bucharest'\nresult = ''\n\n\ndef get_fn(citystr):\n    cities = citystr.split(',')\n    hn = gn = 0\n\n    for ctr in range(0, len(cities) - 1):\n        gn = gn + dict_gn[cities[ctr]][cities[ctr + 1]]\n\n    hn = dict_hn[cities[-1]]\n\n    return hn + gn\n\n\ndef expand(cityq):\n    global result\n\n    tot, citystr, thiscity = cityq.get()\n\n    if thiscity == goal:\n        result = citystr + '::' + str(tot)\n        return\n\n    for city in dict_gn[thiscity]:\n        if city not in citystr.split(','):\n            new_citystr = citystr + ',' + city\n            cityq.put((get_fn(new_citystr), new_citystr, city))\n\n    if not cityq.empty():\n        expand(cityq)\n\n\ndef main():\n    cityq = Q.PriorityQueue()\n    thiscity = start\n\n    cityq.put((999, 'NA', 'NA'))\n    cityq.put((get_fn(start), start, thiscity))\n\n    expand(cityq)\n\n    print(\"The A* path with the total is:\")\n    print(result.replace(',', ' '))\n\n\nmain()\n"}, {"title": "P2 (B) — Recursive Best-First Search", "file": "P2B_RBFS.py", "code": "import queue as Q\nfrom RMP import dict_gn\nfrom RMP import dict_hn\n\nstart = 'Arad'\ngoal = 'Bucharest'\nresult = ''\n\n\ndef get_fn(citystr):\n    cities = citystr.split(',')\n    hn = gn = 0\n\n    for ctr in range(0, len(cities) - 1):\n        gn = gn + dict_gn[cities[ctr]][cities[ctr + 1]]\n\n    hn = dict_hn[cities[-1]]\n\n    return hn + gn\n\n\ndef printout(cityq):\n    for i in range(cityq.qsize()):\n        print(cityq.queue[i])\n\n\ndef expand(cityq):\n    global result\n\n    tot, citystr, thiscity = cityq.get()\n    nexttot = 999\n\n    if not cityq.empty():\n        nexttot, nextcitystr, nextthiscity = cityq.queue[0]\n\n    if thiscity == goal and tot <= nexttot:\n        result = citystr + '::' + str(tot)\n        return\n\n    print(\"Expanded city --------\", thiscity)\n    print(\"Second best fn --------\", nexttot)\n    print(\"==============================\")\n\n    tempq = Q.PriorityQueue()\n\n    for city in dict_gn[thiscity]:\n        if city not in citystr.split(','):\n            tempq.put((\n                get_fn(citystr + ',' + city),\n                citystr + ',' + city,\n                city\n            ))\n\n    while not tempq.empty():\n        ctrtot, ctrcitystr, ctrthiscity = tempq.get()\n\n        if ctrtot < nexttot:\n            cityq.put((ctrtot, ctrcitystr, ctrthiscity))\n        else:\n            cityq.put((ctrtot, ctrcitystr, ctrthiscity))\n            break\n\n    printout(cityq)\n\n    if not cityq.empty():\n        expand(cityq)\n\n\ndef main():\n    cityq = Q.PriorityQueue()\n    thiscity = start\n\n    cityq.put((999, 'NA', 'NA'))\n    cityq.put((get_fn(start), start, thiscity))\n\n    expand(cityq)\n\n    print(\"The Recursive Best-First path with the total is:\")\n    print(result.replace(',', ' '))\n\n\nmain()\n"}, {"title": "P3 — Decision Tree", "file": "P3_DecisionTree.py", "code": "import pandas as pd\nimport matplotlib.pyplot as plt\n\nfrom sklearn.tree import DecisionTreeClassifier, plot_tree\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.metrics import accuracy_score\n\ndata = pd.read_csv('iris.csv')\n\nX = data.drop('Target', axis=1)\ny = data['Target']\n\nX_train, X_test, y_train, y_test = train_test_split(\n    X, y, test_size=0.2, random_state=42\n)\n\nclf = DecisionTreeClassifier()\nclf.fit(X_train, y_train)\n\ny_pred = clf.predict(X_test)\n\naccuracy = accuracy_score(y_test, y_pred)\n\nprint(f\"Accuracy: {accuracy:.2f}\")\n\nplt.figure(figsize=(12, 8))\n\nplot_tree(\n    clf,\n    filled=True,\n    feature_names=X.columns,\n    class_names=[str(name) for name in clf.classes_]\n)\n\nplt.title(\"Decision Tree Visualization\")\nplt.show()\n"}, {"title": "P4 — Feed Forward Backpropagation", "file": "P4_Backpropagation.py", "code": "import numpy as np\n\ndef sigmoid(x):\n    return 1 / (1 + np.exp(-x))\n\ndef sigmoid_derivative(x):\n    return x * (1 - x)\n\n\nclass NeuralNetwork:\n    def __init__(self, input_size, hidden_size, output_size):\n        self.weights_input_hidden = np.random.uniform(\n            -1, 1, (input_size, hidden_size)\n        )\n        self.weights_hidden_output = np.random.uniform(\n            -1, 1, (hidden_size, output_size)\n        )\n\n    def forward(self, inputs):\n        self.hidden_input = np.dot(\n            inputs, self.weights_input_hidden\n        )\n        self.hidden_output = sigmoid(self.hidden_input)\n\n        self.output_input = np.dot(\n            self.hidden_output, self.weights_hidden_output\n        )\n        self.predicted_output = sigmoid(self.output_input)\n\n        return self.predicted_output\n\n    def backward(self, inputs, target, learning_rate):\n        error = target - self.predicted_output\n\n        delta_output = error * sigmoid_derivative(\n            self.predicted_output\n        )\n\n        error_hidden = np.dot(\n            delta_output, self.weights_hidden_output.T\n        )\n\n        delta_hidden = error_hidden * sigmoid_derivative(\n            self.hidden_output\n        )\n\n        self.weights_hidden_output += (\n            np.outer(self.hidden_output, delta_output)\n            * learning_rate\n        )\n\n        self.weights_input_hidden += (\n            np.outer(inputs, delta_hidden)\n            * learning_rate\n        )\n\n    def train(self, training_data, targets, epochs, learning_rate):\n        for epoch in range(epochs):\n            for i in range(len(training_data)):\n                inputs = training_data[i]\n                target = targets[i]\n\n                self.forward(inputs)\n                self.backward(inputs, target, learning_rate)\n\n    def predict(self, inputs):\n        return self.forward(inputs)\n\n\n\ntraining_data = np.array([\n    [0, 0],\n    [0, 1],\n    [1, 0],\n    [1, 1]\n])\n\ntargets = np.array([\n    [0],\n    [1],\n    [1],\n    [0]\n])\n\ninput_size = 2\nhidden_size = 4\noutput_size = 1\nlearning_rate = 0.1\nepochs = 10000\n\n\nnp.random.seed(42)\n\nnn = NeuralNetwork(input_size, hidden_size, output_size)\nnn.train(training_data, targets, epochs, learning_rate)\n\n\nfor i in range(len(training_data)):\n    inputs = training_data[i]\n    prediction = nn.predict(inputs)\n\n    print(\n        f\"Input: {inputs}, \"\n        f\"Predicted Output: {prediction}\"\n    )\n"}, {"title": "P5 — Support Vector Machine (SVM)", "file": "P5_SVM.py", "code": "import pandas as pd\nfrom sklearn.datasets import load_iris\nfrom sklearn.svm import SVC\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.metrics import accuracy_score\n\n\niris = load_iris(as_frame=True)\ndata = iris.frame\n\n\ndata = data[data[\"target\"].isin([0, 1])]\n\n\nX = data.drop(\"target\", axis=1)\ny = data[\"target\"]\n\n\nX_train, X_test, y_train, y_test = train_test_split(\n    X, y,\n    test_size=0.2,\n    random_state=42,\n    stratify=y\n)\n\n\nsvm_classifier = SVC(kernel=\"linear\")\nsvm_classifier.fit(X_train, y_train)\n\n\ny_pred = svm_classifier.predict(X_test)\n\n\naccuracy = accuracy_score(y_test, y_pred)\n\nprint(f\"Accuracy: {accuracy:.2f}\")\n"}, {"title": "P6 — AdaBoost", "file": "P6_AdaBoost.py", "code": "import pandas as pd\nfrom sklearn import model_selection\nfrom sklearn.ensemble import AdaBoostClassifier\n\n\nurl = \"https://raw.githubusercontent.com/jbrownlee/Datasets/master/pima-indians-diabetes.data.csv\"\n\n\nnames = [\n    \"preg\", \"plas\", \"pres\", \"skin\", \"test\",\n    \"mass\", \"pedi\", \"age\", \"class\"\n]\n\n\ndataframe = pd.read_csv(url, names=names)\n\n\narray = dataframe.values\nX = array[:, 0:8]\nY = array[:, 8]\n\n\nseed = 7\nnum_trees = 30\n\n\nmodel = AdaBoostClassifier(\n    n_estimators=num_trees,\n    random_state=seed\n)\n\n\nresults = model_selection.cross_val_score(\n    model, X, Y, cv=10, scoring=\"accuracy\"\n)\n\n\nprint(results.mean())\n"}, {"title": "P7 — Naive Bayes", "file": "P7_NaiveBayes.py", "code": "from sklearn.datasets import load_iris\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.naive_bayes import GaussianNB\nfrom sklearn.metrics import accuracy_score\n\n\niris = load_iris()\n\n\nX = iris.data\ny = iris.target\n\n\nX_train, X_test, y_train, y_test = train_test_split(\n    X, y,\n    test_size=0.2,\n    random_state=42,\n    stratify=y\n)\n\n\nclf = GaussianNB()\n\n\nclf.fit(X_train, y_train)\n\n\ny_pred = clf.predict(X_test)\n\n\naccuracy = accuracy_score(y_test, y_pred)\n\nprint(f\"Accuracy: {accuracy:.2f}\")\n"}, {"title": "P8 — K-Nearest Neighbors (KNN)", "file": "P8_KNN.py", "code": "import pandas as pd\nfrom sklearn.datasets import load_iris\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.neighbors import KNeighborsClassifier\nfrom sklearn.metrics import accuracy_score\nfrom sklearn.preprocessing import StandardScaler\n\n\niris = load_iris()\nX = iris.data\ny = iris.target\n\n\nX_train, X_test, y_train, y_test = train_test_split(\n    X, y, test_size=0.2, random_state=42\n)\n\n\nscaler = StandardScaler()\nX_train = scaler.fit_transform(X_train)\nX_test = scaler.transform(X_test)\n\n\nk = 3\n\n\nclf = KNeighborsClassifier(n_neighbors=k)\nclf.fit(X_train, y_train)\n\n\ny_pred = clf.predict(X_test)\n\n\nclassification_accuracy = accuracy_score(y_test, y_pred)\n\nprint(\"Classification Accuracy:\", classification_accuracy)\n"}, {"title": "P9 — Association Rule Mining", "file": "P9_AssociationRules.py", "code": "import pandas as pd\nfrom mlxtend.frequent_patterns import apriori, association_rules\n\n\ndataset = [\n    ['milk', 'bread', 'nuts'],\n    ['milk', 'bread'],\n    ['milk', 'eggs', 'nuts'],\n    ['milk', 'bread', 'eggs'],\n    ['bread', 'nuts']\n]\n\n\nitems = sorted(set(item for transaction in dataset for item in transaction))\n\ndf = pd.DataFrame([\n    [item in transaction for item in items]\n    for transaction in dataset\n], columns=items)\n\n\nfrequent_itemsets = apriori(\n    df,\n    min_support=0.4,\n    use_colnames=True\n)\n\nprint(\"Frequent Itemsets:\")\nprint(frequent_itemsets)\n\n\nrules = association_rules(\n    frequent_itemsets,\n    metric=\"lift\",\n    min_threshold=1.0\n)\n\nprint(\"\\nAssociation Rules:\")\nprint(rules[\n    ['antecedents', 'consequents', 'support',\n     'confidence', 'lift']\n])\n"}, {"title": "P10 — TensorFlow Demo", "file": "P10_TensorFlow.py", "code": "import tensorflow as tf\nimport numpy as np\nfrom tensorflow.keras.preprocessing.text import Tokenizer\nfrom tensorflow.keras.preprocessing.sequence import pad_sequences\n\nemails = [\n    \"Buy cheap watches! Free shipping!\",\n    \"Meeting for lunch today?\",\n    \"Claim your prize! You've won $1,000,000!\",\n    \"Important meeting at 3 PM.\"\n]\n\nlabels = [1, 0, 1, 0]\n\nmax_words = 1000\nmax_len = 50\n\ntokenizer = Tokenizer(num_words=max_words, oov_token=\"<OOV>\")\ntokenizer.fit_on_texts(emails)\nsequences = tokenizer.texts_to_sequences(emails)\nX_padded = pad_sequences(\n    sequences,\n    maxlen=max_len,\n    padding=\"post\",\n    truncating=\"post\"\n)\n\nmodel = tf.keras.Sequential([\n    tf.keras.layers.Embedding(\n        input_dim=max_words,\n        output_dim=16,\n        input_length=max_len\n    ),\n    tf.keras.layers.Flatten(),\n    tf.keras.layers.Dense(16, activation=\"relu\"),\n    tf.keras.layers.Dense(1, activation=\"sigmoid\")\n])\n\nmodel.compile(\n    optimizer=\"adam\",\n    loss=\"binary_crossentropy\",\n    metrics=[\"accuracy\"]\n)\n\ntraining_data = np.array(X_padded)\ntraining_labels = np.array(labels)\n\nmodel.fit(training_data, training_labels, epochs=10)\n\nfile_path = \"Spam.txt\"\n\nwith open(file_path, \"r\", encoding=\"utf-8\") as file:\n    sample_email_text = file.read()\n\nsequences_sample = tokenizer.texts_to_sequences([sample_email_text])\nsample_email_padded = pad_sequences(\n    sequences_sample,\n    maxlen=max_len,\n    padding=\"post\",\n    truncating=\"post\"\n)\n\nprediction = model.predict(sample_email_padded)\nthreshold = 0.5\n\nif prediction > threshold:\n    print(f\"Sample Email ('{file_path}'): SPAM\")\nelse:\n    print(f\"Sample Email ('{file_path}'): NOT SPAM\")\n"}];
+const list = document.getElementById('list');
+const search = document.getElementById('search');
+const viewer = document.getElementById('viewer');
+const codeElement = document.getElementById('code');
+let activePractical = null;
+
+function renderList(){
+  const query = search.value.trim().toLowerCase();
+  const filtered = practicals.filter(p => (p.title + ' ' + p.file).toLowerCase().includes(query));
+  list.innerHTML = '';
+  document.getElementById('empty').style.display = filtered.length ? 'none' : 'block';
+  filtered.forEach(p => {
+    const button = document.createElement('button');
+    button.className = 'item';
+    const title = document.createElement('strong');
+    title.textContent = p.title;
+    const filename = document.createElement('span');
+    filename.textContent = p.file + ' · Click to view code';
+    button.append(title, filename);
+    button.addEventListener('click', () => showCode(p));
+    list.appendChild(button);
+  });
+}
+function showCode(p){
+  activePractical = p;
+  document.getElementById('codeTitle').textContent = p.title;
+  document.getElementById('fileName').textContent = p.file;
+  document.getElementById('lineCount').textContent = p.code.split('\\n').length + ' lines';
+  codeElement.textContent = p.code;
+  viewer.style.display = 'block';
+  list.style.display = 'none';
+  search.parentElement.style.display = 'none';
+  document.getElementById('empty').style.display = 'none';
+  viewer.scrollIntoView({behavior:'smooth', block:'start'});
+}
+function showList(){
+  viewer.style.display = 'none';
+  list.style.display = 'grid';
+  search.parentElement.style.display = 'flex';
+  renderList();
+}
+search.addEventListener('input', renderList);
+document.getElementById('backBtn').addEventListener('click', showList);
+document.getElementById('copyBtn').addEventListener('click', async () => {
+  if (!activePractical) return;
+  const btn = document.getElementById('copyBtn');
+  try {
+    await navigator.clipboard.writeText(activePractical.code);
+    btn.textContent = 'Copied!';
+    setTimeout(() => btn.textContent = 'Copy Code', 1400);
+  } catch(e) {
+    const range = document.createRange();
+    range.selectNodeContents(codeElement);
+    const selection = window.getSelection();
+    selection.removeAllRanges(); selection.addRange(range);
+    btn.textContent = 'Select code, then copy';
+  }
+});
+renderList();
+</script>
+</body>
+</html>

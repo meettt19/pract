@@ -1,0 +1,12 @@
+Practical 3B
+Step1: Open Command prompt in Administrative mode 
+How to open administrative mode 
+In pc or laptop search type command prompt right click on that and we can see an option of Run administrative 
+Step 2: Type arp 
+Step 3: type arp -a
+Step 4: enter command ipconfig /all to get IP and MAC address 
+Enter: ipconfig /all
+Step 5: Enter command arp -s followed by IP and MAC address 
+Ex. arp -s 157.55.85.212 00-aa-00-62-c6-09
+Step 6: Enter command arp -d
+Ex. arp -d 192.168.0.101

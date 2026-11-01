@@ -1,0 +1,13 @@
+Step1: Open the WHO.is -website 
+Step 2: Enter the website name and hit the “Enter button”. 
+Step 3: Show you information about www.prestashop.com 
+step3- From that we can see an option options of
+       WHO.IS OPEN that and scroll down and we can 
+       see an option for Raw Register Data open that
+       after that do same as we do for WHO.IS 
+       THEN BESIDE OF WHO.IS there is an option 
+       of WEBSITE INFO open that we can see an result 
+       again same open beside of WEBSITE INFO there is 
+       an option for HISTORY OPEN THAT and we can see an
+       result again same beside of history we can see an 
+       option DNS RECORDS OPEN THAT and we can get result

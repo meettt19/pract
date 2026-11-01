@@ -1,0 +1,28 @@
+A] Session Impersonation 
+STEPS 
+1. Open FireFox 
+2. Go to Tools > Addons > Extension 
+3. Search and install EditThisCookie or Cookie Import/Export or any other Cookie tool 
+4. Then Click on Cookie extension to get cookie 
+5. Open a Website and Login and then click on export cookie 
+
+Logout from the webpage once the cookie got exported
+
+
+ Paste the cookie in the tool which you have exported and click on green tick 
+
+And you are in 
+
+Tamper DATA add-on 
+1. Open FireFox 
+2. Go to Tools > Addons > Extension 
+3. Search and install Temper Data 
+
+Select a website for tempering data e.g(razorba) 
+Select any item to but 
+Then Click to add cart 
+Then Click on tool for tempering Data 
+
+
+Then Start tempering the data 
+Here you go

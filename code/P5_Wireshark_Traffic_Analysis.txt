@@ -1,0 +1,9 @@
+Practical 5
+
+Step 1: Install and open WireShark .
+
+Step 2: Go to Capture tab and select Interface option.
+
+Step 3: In Capture interface, Select Local Area Connection and click on start.
+
+Step 4: The source, Destination and protocols of the packets in the LAN network are displayed.

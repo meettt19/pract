@@ -1,0 +1,24 @@
+Step 1 : Open XAMPP and start apache and mysql. 
+
+Step 2 : Go to web browser and enter site . 
+
+Step 3 : Create database with name sql_db.
+
+ Step 4 : Go to site localhost/sql_injection/setup.php and click on create/reset database. 
+
+Step 5 : Go to login.php and login using admin and . 
+
+Step 6 : Opens the home page. 
+
+Step 7 : Go to security setting option in left and set security level low. 
+
+Step 8 : Click on SQL injection option in left. Step
+
+ 9 : Write "1" in text box and click on submit. 
+
+
+Step 10 : Write "a' or ''='" in text box and click on submit.
+
+ Step 11 : Write "1=1" in text box and click on submit. 
+
+Step 12 : Write "1*" in text box and click on submit.

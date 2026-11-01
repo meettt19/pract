@@ -1,0 +1,9 @@
+Step 1: Open CryptoTool 
+And open new file
+Then type on that page ETHICAL HACKING and then we can see at top 
+FILE EDITI VIEW ENCRYPT/DECRYPT 
+Click that ENCRYPT/DECRYPT option then we can see Symmetric(modern)> move to this arrow> and we can see an option from that open RC4....
+After opening that we can see an message thats as three options ENCRYPT DECRYPT CANCEL 
+FOR THAT DO FIRST ENCRYPT 
+AND so same with that same method of RC4.. AND so DECRYPT 
+AND WE CAN GET AN RESULT

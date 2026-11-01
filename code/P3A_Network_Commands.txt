@@ -1,0 +1,12 @@
+Practical 3
+Step 1: Open Command prompt 
+Step 2: Type tracert command and type www.prestashop.com press "Enter".
+Type:
+tracert www.prestashop.com
+Step 3: ping all the IP addresses - ex. 91.240.109.42
+This ip address we will notice after entering tracert  www.prestashop.com after running this command and that we can see ip address and we have to enter in that ping 
+Step 4: 
+Type: ipconfig 
+Enter this command
+Step 5: 
+Type: netstat
